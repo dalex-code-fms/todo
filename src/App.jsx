@@ -26,11 +26,17 @@ const handleAddTask = title => {
 const handleToggleTask = id => {
   const task = tasks.find(task => task.id === id)
   const updatedTask = {...task, completed: !task.completed}
+
   axios
     .put(`http://localhost:5000/tasks/${id}`, updatedTask)
-    .then(()=> setTasks(tasks.map(task=> task.id === id ? updatedTask : task)))
+    .then(()=> {
+      setTasks(tasks.map(task=> task.id === id ? updatedTask : task))
+      
+    })
     .catch(error => console.error("Erreur lors de la mise à jour de la tâche : ", error))
 }
+
+const completedTasksCount = tasks.filter(task => task.completed === true).length
 
 const handleDeleteTask = id => {
   axios
@@ -42,6 +48,7 @@ const handleDeleteTask = id => {
   return (
       <div>
         <h1>ToDo List</h1>
+        <p>Tâches à accomplir : {completedTasksCount}/{tasks.length}</p>
         <AddTodoForm onAddTask={handleAddTask}/>
         <TodoList tasks={ tasks } onToggle={handleToggleTask} onDeleteTask={handleDeleteTask}/>
       </div>

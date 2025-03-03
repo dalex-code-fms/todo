@@ -1,6 +1,12 @@
 const DeleteButton = ({task, onDeleteTask}) => {
+
+    const handleClick = event => {
+        event.stopPropagation()
+        onDeleteTask(task.id)
+    }
+
 return (
-    <button onClick={()=> onDeleteTask(task.id)}>delete</button>
+    <button onClick={handleClick}>delete</button>
 )
 }
 
