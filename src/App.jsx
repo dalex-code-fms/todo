@@ -1,34 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import TodoList from './components/TodoList';
+import axios from 'axios';
 import './App.css'
+import { useEffect, useState } from 'react';
+import AddTodoForm from './components/AddTodoForm';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [tasks, setTasks] = useState ([])
+
+  useEffect(()=> {
+    axios
+      .get("http://localhost:5000/tasks")
+      .then(response => setTasks(response.data))
+      .catch(error => console.error("Erreur de récupération des tâches :", error))
+  }, [])
+
+const handleAddTask = title => {
+  const newTask = {title, completed : false};
+  axios
+    .post("http://localhost:5000/tasks", newTask)
+    .then(response => setTasks([...tasks, response.data]))
+    .catch(error=> console.error("Erreur lors de l'ajout d'une tâche : ", error))
+}
+
+const handleToggleTask = id => {
+  const task = tasks.find(task => task.id === id)
+  const updatedTask = {...task, completed: !task.completed}
+  axios
+    .put(`http://localhost:5000/tasks/${id}`, updatedTask)
+    .then(()=> setTasks(tasks.map(task=> task.id === id ? updatedTask : task)))
+    .catch(error => console.error("Erreur lors de la mise à jour de la tâche : ", error))
+}
+
 
   return (
-    <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1>ToDo List</h1>
+        <AddTodoForm onAddTask={handleAddTask}/>
+        <TodoList tasks={ tasks } onToggle={handleToggleTask}/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
   )
 }
 
