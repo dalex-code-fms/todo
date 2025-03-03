@@ -32,12 +32,18 @@ const handleToggleTask = id => {
     .catch(error => console.error("Erreur lors de la mise à jour de la tâche : ", error))
 }
 
+const handleDeleteTask = id => {
+  axios
+    .delete(`http://localhost:5000/tasks/${id}`)
+    .then(()=> setTasks(tasks.filter(task => task.id !== id)))
+    .catch(error => console.error("Erreur lors de la suppression de la tâche : ", error))
+}
 
   return (
       <div>
         <h1>ToDo List</h1>
         <AddTodoForm onAddTask={handleAddTask}/>
-        <TodoList tasks={ tasks } onToggle={handleToggleTask}/>
+        <TodoList tasks={ tasks } onToggle={handleToggleTask} onDeleteTask={handleDeleteTask}/>
       </div>
   )
 }

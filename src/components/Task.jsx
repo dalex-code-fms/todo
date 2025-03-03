@@ -1,9 +1,12 @@
-const Task = ({ task, onToggle }) => {
+import DeleteButton
+ from "./deleteButton";
+const Task = ({ task, onToggle, onDeleteTask }) => {
     return (
         <li 
         onClick={()=> onToggle(task.id)}
         style={({textDecoration: task.completed ? 'line-through' : 'none'})}
-        >{task.title}</li>
+        >{task.title} <DeleteButton task={task} onDeleteTask={onDeleteTask}/></li>
+        
     )
 }
 
