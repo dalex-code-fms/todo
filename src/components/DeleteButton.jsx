@@ -1,13 +1,14 @@
-const DeleteButton = ({task, onDeleteTask}) => {
+const DeleteButton = ({ task, onDeleteTask }) => {
+  const handleClick = (event) => {
+    event.stopPropagation();
+    onDeleteTask(task.id);
+  };
 
-    const handleClick = event => {
-        event.stopPropagation()
-        onDeleteTask(task.id)
-    }
-
-return (
-    <button onClick={handleClick}>delete</button>
-)
-}
+  return (
+    <button className="toggle btn-delete" onClick={handleClick}>
+      DELETE
+    </button>
+  );
+};
 
 export default DeleteButton;

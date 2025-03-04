@@ -1,0 +1,37 @@
+.toggle {
+  border: none;
+  background: var(--toggle-btn-background);
+  color: var(--secondary-text-color);
+  padding: 5px;
+  margin: 0;
+  cursor: pointer;
+  border: 1px solid var(--border-line-color);
+  border-radius: 5px;
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+.btn-delete {
+  background: red;
+  border: none;
+}
+
+.BASSE {
+  background: green;
+}
+
+.MOYENNE {
+  background: blue;
+}
+
+.HAUTE {
+  background: red;
+}
+
+.BASSE,
+.MOYENNE,
+.HAUTE {
+  color: var(--secondary-text-color);
+  border-radius: 0;
+  border: none;
+}

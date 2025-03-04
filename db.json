@@ -1,29 +1,28 @@
 {
   "tasks": [
     {
-      "id": "26f4",
-      "title": "sqdqdqs",
-      "completed": true
+      "id": "e7b1",
+      "title": "aller manger",
+      "completed": false,
+      "priority": "HAUTE"
     },
     {
-      "id": "17b2",
-      "title": "qsdqsdqsd",
-      "completed": true
+      "id": "581f",
+      "title": "manger des chocolats",
+      "completed": false,
+      "priority": "MOYENNE"
     },
     {
-      "id": "cf87",
-      "title": "qsdqds",
-      "completed": true
+      "id": "7140",
+      "title": "rentrer à la maison",
+      "completed": false,
+      "priority": "HAUTE"
     },
     {
-      "id": "f440",
-      "title": "qsdqsdqsd",
-      "completed": true
-    },
-    {
-      "id": "d569",
-      "title": "sqdqdqs",
-      "completed": true
+      "id": "ba73",
+      "title": "prendre des vacances",
+      "completed": false,
+      "priority": "HAUTE"
     }
   ]
 }
